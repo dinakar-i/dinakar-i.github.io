@@ -1,0 +1,54 @@
+.menu-items {
+    float: left;
+    cursor: pointer;
+    color: white;
+    padding: 15px 30px;
+    margin-left: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.9), 0 6px 20px 0 rgba(0, 0, 0, 1.19);
+    font-family: 'Monomaniac One', sans-serif;
+}
+
+.menus {
+    margin-left: 20%;
+}
+
+.menu-items:hover {
+    background-color: #0abb92;
+    color: black;
+    transition: 0.5s;
+}
+
+.nav {
+    width: 100%;
+    position: fixed;
+    height: 70px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 100;
+}
+
+.ico-items {
+    font-size: 40px;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: gray;
+    cursor: pointer;
+}
+.ico-items:hover
+{
+    transition: 0.7s;
+    box-shadow: 0 4px 8px 0 rgb(10, 187, 146), 0px 0px 60px 0px rgb(10, 187, 146);
+    color: #0abb92;
+    border-radius: 5px;
+}
+.nav-items {
+    cursor: pointer;
+    color: white;
+    font-family: 'Monomaniac One', sans-serif;
+}
+
+.nav-items:hover {
+    color: #0abb92;
+    transition: 0.5s;
+}
