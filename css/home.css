@@ -25,6 +25,7 @@
     height: 70px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 100;
+    background-color: #121212;
 }
 
 .ico-items {
@@ -35,13 +36,14 @@
     color: gray;
     cursor: pointer;
 }
-.ico-items:hover
-{
+
+.ico-items:hover {
     transition: 0.7s;
     box-shadow: 0 4px 8px 0 rgb(10, 187, 146), 0px 0px 60px 0px rgb(10, 187, 146);
     color: #0abb92;
     border-radius: 5px;
 }
+
 .nav-items {
     cursor: pointer;
     color: white;
