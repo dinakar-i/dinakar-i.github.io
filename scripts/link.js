@@ -10,6 +10,10 @@ $('.fa-instagram').click(() => {
 $('.fa-envelope').click(() => {
     window.open("mailto:dinakar_i@yahoo.com");
 })
+$('.project-btn').click(() => {
+    window.open("https://dinakar-i.github.io/projects.html");
+})
+
 
 // $(".aboutme-btn").click(function() {	
 //     $('html,body').animate({
