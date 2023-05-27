@@ -30,6 +30,15 @@
     background-color: #121212;
 }
 
+.nav-title {
+    margin-left: 45%;
+    position: absolute;
+    color: #0abb92;
+    cursor: default;
+    margin-top: 35px;
+    font-family: 'Monomaniac One', sans-serif;
+}
+
 .ico-items {
     font-size: 40px;
     padding: 10px;
@@ -81,8 +90,28 @@
     cursor: default;
 }
 
+.re-li-box {
+    float: left;
+    padding: 10px 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.9), 0 6px 20px 0 rgba(0, 0, 0, 1.19);
+    border-radius: 5px;
+    color: black;
+    background-color: #0abb92;
+    font-family: 'Monomaniac One', sans-serif;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 2%;
+    cursor: default;
+}
+
 .skills-part {
     float: left;
+}
+
+@media only screen and (max-width: 600px) {
+    .tits {
+        margin-left: 10px;
+    }
 }
 
 
