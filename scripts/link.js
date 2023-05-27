@@ -10,10 +10,6 @@ $('.fa-instagram').click(() => {
 $('.fa-envelope').click(() => {
     window.open("mailto:dinakar_i@yahoo.com");
 })
-$('.project-btn').click(() => {
-    window.open("https://dinakar-i.github.io/projects.html");
-})
-
 
 // $(".aboutme-btn").click(function() {	
 //     $('html,body').animate({
@@ -24,10 +20,17 @@ $('.project-btn').click(() => {
 
 $(document).ready(function() {
     $(".aboutme-btn").click(function(event) {
-        console.log("trigger");
         event.preventDefault();
         $("html, body").animate({
-            scrollTop: $(".aboutme-p").offset().top
+            scrollTop: $("#er").offset().top
+        }, 500);
+    });
+});
+$(document).ready(function() {
+    $(".project-btn").click(function(event) {
+        event.preventDefault();
+        $("html, body").animate({
+            scrollTop: $(".card-holder").offset().top
         }, 500);
     });
 });

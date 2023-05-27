@@ -108,6 +108,15 @@
     float: left;
 }
 
+.banner-box {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.9), 0 6px 20px 0 rgba(0, 0, 0, 1.19);
+    padding: 20px 30px;
+    border-radius: 10px;
+    color: #0abb92;
+    font-family: 'Monomaniac One', sans-serif;
+    cursor: default;
+}
+
 @media only screen and (max-width: 600px) {
     .tits {
         margin-left: 10px;
@@ -115,9 +124,55 @@
 }
 
 
-/* .li-box:hover {
-    color: black;
-    background-color: #0abb92;
+/* ================================================== [Project file CSS] ======================================== */
+
+.card-holder {
+    float: left;
+    width: 350px;
+    height: 300px;
+    background-color: #121212;
+    margin-left: 20px;
+    margin-top: 10px;
+    text-align: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-holder:hover {
     transition: 0.7s;
+    box-shadow: 0 4px 8px 0 rgb(10, 187, 146), 0px 0px 60px 0px rgb(10, 187, 146);
+}
+
+.card-img {
+    width: 100%;
+}
+
+.img-text {
+    position: absolute;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    margin: 5px 5px;
+    background-color: #121212;
+    font-size: 40px;
+}
+
+.getin-btn {
+    padding: 10px 60px;
+    outline-style: none;
+    border-style: none;
+    font-size: medium;
+    font-weight: 400;
+    font-family: 'Monomaniac One', sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 7px;
+}
+
+.project-title {
+    font-family: 'Monomaniac One', sans-serif;
+    color: white;
     cursor: default;
-} */
+}
