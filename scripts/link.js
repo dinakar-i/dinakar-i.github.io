@@ -7,6 +7,9 @@ $('.fa-linkedin').click(() => {
 $('.fa-instagram').click(() => {
     window.open("https://www.instagram.com/dinakar_i/");
 })
+$('.res-btn').click(() => {
+    window.open("https://firebasestorage.googleapis.com/v0/b/projectx-77451.appspot.com/o/resume(dinakar).pdf?alt=media&token=465449ab-fcd0-4961-93ce-89c7562602a3");
+})
 $('.fa-envelope').click(() => {
     window.open("mailto:dinakar_i@yahoo.com");
 })
