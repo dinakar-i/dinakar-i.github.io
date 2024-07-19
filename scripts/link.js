@@ -8,7 +8,7 @@ $('.fa-instagram').click(() => {
     window.open("https://www.instagram.com/dinakar_i/");
 })
 $('.res-btn').click(() => {
-    window.open("https://firebasestorage.googleapis.com/v0/b/projectx-77451.appspot.com/o/resume(dinakar)%20(2).pdf?alt=media&token=ed6fded8-2226-4805-ac23-e00f205dcdf2");
+    window.open("https://firebasestorage.googleapis.com/v0/b/projectx-77451.appspot.com/o/Soft-resume(dinakar)%20(1).pdf?alt=media&token=67c35672-1446-4eb7-a491-1062ad52adb7");
 })
 $('.fa-envelope').click(() => {
     window.open("mailto:dinakar_i@yahoo.com");
