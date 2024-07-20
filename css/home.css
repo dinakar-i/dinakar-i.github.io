@@ -109,7 +109,7 @@
 }
 
 .banner-box {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.9), 0 6px 20px 0 rgba(0, 0, 0, 1.19);
+    box-shadow: 0 4px 8px 0 rgb(10, 187, 146), 0px 0px 60px 0px rgb(10, 187, 146);
     padding: 20px 30px;
     border-radius: 10px;
     color: #0abb92;
