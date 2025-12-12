@@ -1,151 +1,518 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="icon" href="img/banner_img.png">
-    <title>Portfolio - Dinakar | Programmer</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/home.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!------google fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Chokokutai&family=Monomaniac+One&family=Slackside+One&family=Tsukimi+Rounded:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinakar Murugan | Full Stack Developer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap');
+
+        /* --- 1. CORE VARIABLES --- */
+        :root {
+            --bg-color: #FFFDF5;
+            --accent-pink: #FF6B6B;
+            --accent-yellow: #FFD93D;
+            --accent-blue: #4D96FF;
+            --accent-green: #6BCB77;
+            --text-black: #1a1a1a;
+            --border-thick: 4px solid var(--text-black);
+            --shadow-hard: 4px 4px 0px 0px rgba(0,0,0,0.4);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(var(--accent-blue) 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-black);
+            margin: 0;
+            overflow-x: hidden;
+            cursor: none; 
+            padding-bottom: 200px;
+        }
+
+        h1, h2, h3, .caption, .btn, .tag, .guide-text {
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- 2. CURSOR ANIMATION --- */
+        .cursor-main {
+            width: 30px; height: 30px; background-color: var(--accent-pink);
+            border: 3px solid var(--text-black); border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s;
+        }
+        .cursor-trail {
+            width: 15px; height: 15px; background-color: var(--accent-yellow);
+            border: 2px solid var(--text-black); border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9998;
+            transition: left 0.1s linear, top 0.1s linear; transform: translate(-50%, -50%);
+        }
+        .cursor-hovered {
+            width: 50px; height: 50px; background: transparent;
+            border: 4px dashed var(--accent-blue); animation: spin 4s linear infinite;
+        }
+        @keyframes spin { 100% { transform:translate(-50%, -50%) rotate(360deg); } }
+
+        /* --- 3. LAYOUT --- */
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; position: relative; }
+
+        /* --- UPDATED HEADER STYLES --- */
+        .header { 
+            padding: 6rem 0; min-height: 60vh;
+            display: flex; flex-direction: column; justify-content: center; position: relative;
+        }
+        
+        .header-content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem; /* Space between text and character */
+        }
+
+        .hero-avatar {
+            width: 180px;
+            height: 180px;
+            border: var(--border-thick);
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 10px 10px 0px var(--text-black);
+            /* Bouncy Animation */
+            animation: heroBounce 3s ease-in-out infinite;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: 4rem; color: var(--accent-pink);
+            text-shadow: 4px 4px 0px var(--text-black); margin-bottom: 0.5rem; margin-top: 0;
+            line-height: 1.1;
+        }
+
+        @keyframes heroBounce {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        /* Mobile Responsive Header */
+        @media (max-width: 768px) {
+            .header-content-wrapper { flex-direction: column; text-align: center; }
+            .header-text { text-align: center; }
+            .header h1 { font-size: 3rem; }
+        }
+
+        /* --- 4. SECTIONS --- */
+        .card {
+            background: white; border: var(--border-thick); box-shadow: var(--shadow-hard);
+            border-radius: 20px; padding: 2rem; margin-bottom: 3rem; position: relative; z-index: 1; 
+        }
+        .about-section { background-color: var(--accent-yellow); border-radius: 25px 50px 25px 50px; }
+        .skill-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        .tag {
+            background: white; border: 2px solid var(--text-black);
+            padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;
+            box-shadow: 2px 2px 0px var(--text-black);
+        }
+
+        /* --- 5. QUEST BOARD --- */
+        .quest-board-section {
+            padding: 4rem 1rem; margin: 8rem auto; max-width: 1100px;
+            background-color: #dcb376;
+            background-image: radial-gradient(rgba(0,0,0,0.1) 2px, transparent 2px);
+            background-size: 15px 15px;
+            border: 15px solid #8d6e63; border-radius: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2), 10px 10px 0px var(--text-black);
+            position: relative;
+        }
+        .quest-title-container { text-align: center; margin-bottom: 3rem; }
+        .gallery-title {
+            display: inline-block; background-color: white; color: var(--text-black);
+            padding: 1rem 3rem; border: 2px solid var(--text-black);
+            transform: rotate(-2deg); box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+            font-size: 2.5rem; position: relative;
+        }
+        .gallery-title::before {
+            content: ''; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 30px; background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .scrapbook-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem; }
+
+        .photo-card {
+            background: #fff9c4; padding: 1.5rem; width: 220px;
+            transition: all 0.3s; position: relative; cursor: pointer;
+            text-decoration: none; color: var(--text-black); display: block;
+            box-shadow: 5px 5px 5px rgba(0,0,0,0.2); border-bottom-right-radius: 60px 10px; 
+        }
+        /* Sticky note colors */
+        .photo-card:nth-child(1) { background-color: #ffccbc; }
+        .photo-card:nth-child(2) { background-color: #fff9c4; }
+        .photo-card:nth-child(3) { background-color: #b2dfdb; }
+        .photo-card:nth-child(4) { background-color: #e1bee7; }
+        .photo-card:nth-child(5) { background-color: #ffecb3; }
+        .photo-card::after {
+            content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            width: 15px; height: 15px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ff5252, #b71c1c);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3); border: 1px solid #7f0000;
+        }
+        .photo-card img { width: 100%; height: 150px; object-fit: cover; border: 2px solid var(--text-black); background-color: #eee; margin-bottom: 10px; }
+        .caption { text-align: center; margin-top: 0.5rem; font-size: 1.2rem; font-weight: bold;}
+        .desc { font-family: 'Quicksand', sans-serif; font-size: 0.9rem; text-align: center; margin-top: 0.5rem; line-height: 1.3; }
+        .photo-card:hover { transform: scale(1.1) rotate(0deg) !important; z-index: 10; box-shadow: 15px 25px 30px rgba(0,0,0,0.3); }
+        .photo-card:nth-child(odd) { transform: rotate(-3deg); }
+        .photo-card:nth-child(even) { transform: rotate(3deg); margin-top: 1rem; }
+        .leetcode-badge { position: absolute; bottom: -10px; right: -10px; background: #FFA116; color: white; border: 2px solid black; padding: 3px 8px; border-radius: 10px; font-weight: bold; font-size: 0.75rem; transform: rotate(-5deg); }
+
+
+        /* --- 6. SOCIAL PLATFORMS --- */
+        .social-grid {
+            display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem;
+        }
+        .social-bubble {
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            border: var(--border-thick);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'Fredoka One'; font-size: 1.2rem;
+            text-decoration: none; color: black;
+            box-shadow: 8px 8px 0px rgba(0,0,0,1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            cursor: pointer;
+        }
+        .social-bubble:hover { transform: scale(1.15) rotate(5deg); box-shadow: 12px 12px 0px rgba(0,0,0,1); }
+        .social-bubble.linkedin { background: #0077b5; color: white; }
+        .social-bubble.github { background: #333; color: white; }
+        .social-icon { font-size: 2.5rem; margin-bottom: 5px; display: block;}
+
+
+        /* --- 7. HONEY BEE COMPONENT --- */
+        #guide-wrapper {
+            position: fixed; z-index: 5000;
+            display: flex; align-items: center; 
+            width: 100px; height: 100px;
+            pointer-events: none; 
+            transition: top 1.5s cubic-bezier(0.45, 0, 0.55, 1), left 1.5s cubic-bezier(0.45, 0, 0.55, 1);
+        }
+        #guide-wrapper.intro-mode { top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) scale(2); }
+
+        .bee { position: relative; width: 60px; height: 40px; animation: hover 2s ease-in-out infinite; }
+        .bee-body {
+            width: 100%; height: 100%; background-color: #FFD700; border: 3px solid #1a1a1a; border-radius: 25px;
+            background-image: linear-gradient(90deg, transparent 20%, #1a1a1a 20%, #1a1a1a 40%, transparent 40%, transparent 60%, #1a1a1a 60%, #1a1a1a 80%, transparent 80%);
+            position: relative; z-index: 2;
+        }
+        .bee-eye {
+            position: absolute; top: 8px; right: 10px; width: 6px; height: 6px; background: black; border-radius: 50%; z-index: 3; animation: blink 4s infinite;
+        }
+        .bee-wing {
+            position: absolute; width: 25px; height: 35px; background: rgba(255, 255, 255, 0.9); border: 2px solid #1a1a1a;
+            border-radius: 50%; top: -25px; left: 15px; z-index: 1; transform-origin: bottom center; animation: flutter 0.1s linear infinite; 
+        }
+        .bee-wing.back { left: 20px; top: -28px; z-index: 0; animation-delay: 0.05s; }
+        .bee::after {
+            content: ''; position: absolute; left: -6px; top: 50%; transform: translateY(-50%);
+            width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-right: 10px solid #1a1a1a;
+        }
+        #guide-wrapper.is-flying .bee { transform: rotate(20deg); }
+
+        @keyframes hover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes flutter { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.6); } }
+        @keyframes blink { 0%, 90%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+
+        /* Speech Bubble */
+        .speech-bubble {
+            position: absolute; top: -90px; left: -60px;
+            background: white; border: 3px solid var(--text-black);
+            padding: 10px; border-radius: 15px; width: 220px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            font-size: 0.85rem; opacity: 0; transition: opacity 0.5s;
+            pointer-events: auto; /* Enable clicking buttons inside bubble */
+        }
+        .speech-bubble.visible { opacity: 1; }
+        .guide-name { color: var(--accent-pink); font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 2px;}
+
+        .bubble-action {
+            display: inline-block; margin-top: 5px; background: var(--accent-blue);
+            color: white; font-size: 0.7rem; padding: 3px 8px; border-radius: 5px;
+            text-decoration: none; border: 2px solid black; font-weight: bold;
+        }
+
+        /* --- 8. INTRO OVERLAY --- */
+        #intro-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95); z-index: 4000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.5s;
+        }
+        #intro-btn { margin-top: 200px; pointer-events: auto; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* ANCHOR POINTS */
+        .guide-spot { position: absolute; width: 10px; height: 10px; }
+        #spot-header { bottom: 50px; left: 20%; }
+        #spot-about { top: -60px; right: 10%; }
+        #spot-quest { top: -70px; left: 5%; }
+        #spot-social { top: -50px; left: 80%; }
+        #spot-contact { top: -90px; left: 50%; transform: translateX(-50%); }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block; background: var(--accent-green); color: var(--text-black);
+            font-size: 1.5rem; text-decoration: none; padding: 1rem 2rem;
+            border: var(--border-thick); box-shadow: var(--shadow-hard);
+            border-radius: 50px; cursor: pointer; margin-top: 1rem; pointer-events: auto;
+        }
+        .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--text-black); }
+
+    </style>
 </head>
-<!-- #0abb92 -->
-<!-- #121212 -->
+<body>
 
-<body style="background-color: #121212;">
+    <div class="cursor-trail" id="trail1"></div>
+    <div class="cursor-trail" id="trail2"></div>
+    <div class="cursor-main" id="cursorMain"></div>
 
-    <div class="nav">
-        <img class="nav-items" style="width: 70px;" src="img/banner_img.png" alt="ico" />
-        <h5 class="nav-items res-btn" style="margin-top:30px;">dinakar-i //:  <span>My Resume</span> <i class="fa-solid fa-file"></i></h5>
-        <h5 class="nav-title">Happy coding!</h5>
-
+    <div id="intro-overlay">
+        <button id="intro-btn" class="btn">Start Adventure</button>
     </div>
-    <div class="container text-center">
-        <div class="row">
-            <div class="col" style="padding:100px 0;">
-                <h3 style="color: gray;font-family: 'Slackside One', cursive;cursor: default;">Hey,Hi</h3>
-                <h1 style="color: #0abb92;font-family: 'Chokokutai', cursive;cursor: default;">I am dinakar</h1>
-                <h2 style="font-family: 'Cherry Bomb One', cursive;cursor: default;">Welcome to My Portfolio</h2>
-                <ul class="menus" style="list-style: none;">
-                    <li class="menu-items btn-hover project-btn">My Projects</li>
-                    <li class="menu-items btn-hover aboutme-btn">About Me</li>
-                </ul><br><br><br>
-                <i class="fa-brands fa-square-github ico-items"></i>
-                <i class="fa-brands fa-linkedin ico-items"></i>
-                <i class="fa-brands fa-instagram ico-items"></i>
-                <i class="fa-solid  fa-envelope ico-items"></i>
-                <div class="skills-part">
-                    <h5 style="text-align: left;" class="tits">My Skills</h5>
-                    <div class="li-box btn-hover">Java</div>
-                    <div class="li-box btn-hover">Python</div>
-                    <div class="li-box btn-hover">Javascript</div>
-                    <div class="li-box btn-hover">PHP</div>
-                    <div class="li-box btn-hover">Data Structure And Algorithm</div>
-                    <div class="li-box btn-hover">OOPS</div>
-                    <div class="li-box btn-hover">Problem Solving</div>
-                    <div class="li-box btn-hover">React Js</div>
-                    <div class="li-box btn-hover">Jqurey</div>
-                    <div class="li-box btn-hover">MySQL</div>
-                    <div class="li-box btn-hover">Google Firebase</div>
-                    <div class="li-box btn-hover">Website Development</div>
-                    <div class="li-box btn-hover">Android Application Development</div>>
-                    <div class="li-box btn-hover">2D Game development</div>
-                </div>
-                <div class="skills-part">
-                    <br>
-                    <h5 style="text-align: left;" class="tits">Tools and Softwares which is Used</h5>
-                   <div class="li-box btn-hover">Figma for UI Design</div>
-                    <div class="li-box btn-hover">Git</div>
-                    <div class="li-box btn-hover">Photoshop</div>
-                    <div class="li-box btn-hover">Unity Game Engine</div>
-                </div>
-            </div>
 
-            <div class="col">
-                <script class="animate__animated animate__backInRight animate__slower 3s " src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/f21a4009-ffcb-440b-a9cf-392a30794ad0/IkCdU9vdB9.json" background="##FFFFFF" speed="1" style="width: 300px; height: 300px" autoplay direction="1" mode="normal"></lottie-player>
-<!--                 <img src="img/banner_img.png " class="animate__animated animate__backInRight animate__slower 3s " alt="dinakaar-avatar "> -->
-                <div class="skills-part">
-                    <br>
-                    <h5 style="text-align: left;" class="tits">Course Completion</h5>
-                    <div class="re-li-box">ETHICAL HACKING WITH PYTHON</div>
-                    <div class="re-li-box">WEB DEVELOPMENT</div>
-                    <div class="re-li-box">UNITY GAME DEVELOPMENT</div>
-                    <div class="re-li-box">ANDROID DEVELOPMENT</div>
-                    <div class="re-li-box">DIGITAL MARKETING</div>
-                </div>
-                <div class="skills-part">
-                    <br>
-                    <h5 style="text-align: left;" class="tits">Daily Routines</h5>
-                    <div class="banner-box">
-                        <h5>Learning DSA 👨‍💻</h5>
-                        <h5>Practice Drawing 🎨</h5>
-                        <h5>Book Reading - Don't Believe Everything You Think 📗</h5>
-                        <h5>Quantitative aptitude and Reasoning 📐</h5>
-                    </div>
-                </div>
-            </div>
+    <div id="guide-wrapper" class="intro-mode">
+        <div class="bee">
+            <div class="bee-wing back"></div>
+            <div class="bee-wing"></div>
+            <div class="bee-body"></div>
+            <div class="bee-eye"></div>
         </div>
-        <div class="aboutme">
-            <h5 id="er" class="tits">About Me</h5>
-            <p class="aboutme-p">Hello! My name is Dinakar, and at the age of 22, I am a B.E. graduate of the Computer Science department, Fresher 2023. I am excited to share my diverse skill set and passion for technology with you.</p>
-            <p class="aboutme-p">With proficiency in programming languages such as Java, Python, and JavaScript, I have built a strong foundation in software development. My expertise lies in website development, where I leverage my technical abilities to create dynamic and
-                user-friendly web applications. Whether it's crafting engaging front-end designs or optimizing server-side functionality, I ensure seamless user experiences and efficient functionality.addition to web development, I have a deep interest
-                in Android application development. I keep myself updated with the latest trends and advancements in the field, allowing me to create innovative and intuitive mobile applications for the Android platform.
-                <p class="aboutme-p">What sets me apart is my knowledge and experience in cybersecurity. I have a strong understanding of hacking and penetration testing, which enables me to identify vulnerabilities and implement effective security measures. Ensuring the
-                    protection of digital systems is of utmost importance to me. Furthermore, I possess a keen interest in digital marketing. By combining my technical skills with strategic marketing campaigns, search engine optimization (SEO), and social
-                    media engagement, I aim to enhance online presence and reach target audiences effectively. As a dedicated and ambitious individual, I constantly seek opportunities to expand my knowledge and skills in software development, cybersecurity,
-                    and digital marketing. I am eager to contribute to the ever-evolving world of technology and make a positive impact.</p>
+        <div class="speech-bubble visible" id="speech-bubble-container">
+            <span class="guide-name">BUZZY</span>
+            <span id="guide-text">Bzzzt! I am Buzzy the Bee. I will fly you to Dinakar's best work. Click a Quest!</span>
+            <div id="bubble-actions"></div>
         </div>
     </div>
-    <div style="float: none; width: 250px;" class="re-li-box">My Projects on Github</div>
-    <div class="project-section">
 
-        <div class="card-holder">
-            <i class="fa-brands fa-square-github img-text"></i>
+    <div class="container scroll-section" data-message="Welcome to the Hive! Dinakar is a Level 2 Full-Stack Worker Bee." id="section-header">
+        <div class="guide-spot" id="spot-header"></div> 
+        
+        <header class="header">
+            <div class="header-content-wrapper">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Dinakar&backgroundColor=c0aede&clothing=hoodie&eyebrows=default&eyes=happy" alt="Dinakar Cartoon Avatar" class="hero-avatar">
+                
+                <div class="header-text">
+                    <h1>Hello, I'm Dinakar!</h1>
+                    <p style="font-size: 1.2rem; font-weight: 700; background: white; border: 3px solid black; display: inline-block; padding: 0.5rem 1rem;">
+                        Full-Stack Wizard (Level 2) 🧙‍♂️
+                    </p>
+                </div>
+            </div>
+        </header>
+    </div>
 
-            <img src="./assets/key.png" alt="" class="card-img">
-            <h4 class="project-title">KeyLogger-Python(Virus)</h4>
-            <a target="_blank" href="https://github.com/dinakar-i/KeyLogger-Using-Python/"><button class="getin-btn">Get In</button></a>
+    <div class="container scroll-section" data-message="The Character Sheet! He builds .NET engines and Angular frontends." id="section-about">
+        <section class="card about-section interactable">
+            <div class="guide-spot" id="spot-about"></div>
+            <h2>Character Bio</h2>
+            <p>I am a <strong>Full-Stack .NET & Angular Developer</strong> based in Chennai. I specialize in building high-performance engines that power mobile games and automated SaaS platforms.</p>
+            <p>At <strong>HFG Entertainments</strong>, I architected systems handling millions of game downloads.</p>
+            <hr style="border: 2px dashed black; margin: 1.5rem 0;">
+            <h3>Inventory (Skills)</h3>
+            <div class="skill-container">
+                <span class="tag" style="background:#FFD93D">Angular 14+</span>
+                <span class="tag" style="background:#4D96FF; color:white">.NET Core 8</span>
+                <span class="tag" style="background:#FF6B6B; color:white">C#</span>
+                <span class="tag" style="background:#6BCB77">MySQL</span>
+                <span class="tag">Hangfire</span>
+            </div>
+        </section>
+    </div>
+
+    <section class="quest-board-section scroll-section" data-message="The Quest Board! Click any Sticky Note and I will buzz over to explain." id="section-quest">
+        <div class="guide-spot" id="spot-quest"></div>
+        <div class="quest-title-container">
+            <h2 class="gallery-title">Quest Board</h2>
         </div>
-        <div class="card-holder">
-            <i class="fa-brands fa-square-github img-text"></i>
-
-            <img src="./assets/e-com.png" alt="" class="card-img">
-            <h4 class="project-title">Online Course Selling Site</h4>
-            <a target="_blank" href="https://github.com/dinakar-i/Online-Course-Selling-Site"><button class="getin-btn">Get In</button></a>
-        </div>
-        <div class="card-holder">
-            <i class="fa-brands fa-square-github img-text"></i>
-
-            <img src="./assets/cbot.png" alt="" class="card-img">
-            <h4 class="project-title">Social Media for College</h4>
-            <a target="_blank" href="https://github.com/dinakar-i/Clone-insta-for-college-purpose-Android"><button class="getin-btn">Get In</button></a>
-        </div>
-      <div class="card-holder">
-             <i class="fa-brands fa-google-drive img-text"></i>
+        <div class="scrapbook-container">
             
-            <img src="./assets/gogo_poster.png" alt="" class="card-img">
-            <h4 class="project-title">2D Mobile Story Game(apk)</h4>
-            <a target="_blank" href="https://drive.google.com/file/d/1JTj0_XrJ9RmleMRuSHKlcAAAjKwWaqB1/view?usp=sharing"><button class="getin-btn">Get In</button></a>
+            <div class="photo-card interactable trigger-guide" 
+                 data-message="The Arena! Dinakar has solved 100+ problems here. A true test of strength." 
+                 data-link="https://leetcode.com/dinakar_i/">
+                <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Sword&backgroundColor=FFA116" alt="Pixel Sword">
+                <div class="caption">LeetCode Arena</div>
+                <div class="desc">Sharpening algorithmic skills daily. Click to inspect!</div>
+                <div class="leetcode-badge">View Stats</div>
+            </div>
+
+            <div class="photo-card interactable trigger-guide"
+                 data-message="A magical bot! It uses Hangfire to auto-publish posts while you sleep."
+                 data-link="">
+                <img src="https://robohash.org/scheduler?set=set3&bgset=bg1" alt="Robot Scheduler">
+                <div class="caption">Social Automator</div>
+                <div class="desc">SaaS scheduler using <strong>Hangfire & .NET</strong>.</div>
+            </div>
+
+            <div class="photo-card interactable trigger-guide"
+                 data-message="This beast eats data! It tracks millions of downloads and crash logs."
+                 data-link="">
+                <img src="https://robohash.org/telemetry?set=set2&bgset=bg2" alt="Data Monster">
+                <div class="caption">Telemetry Engine</div>
+                <div class="desc">Tracking <strong>millions of downloads</strong> at HFG.</div>
+            </div>
+
+            <div class="photo-card interactable trigger-guide"
+                 data-message="The Hall of Fame! Real-time ranking systems for competitive gamers."
+                 data-link="">
+                <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Rank&backgroundColor=b6e3f4" alt="Trophy Pixel">
+                <div class="caption">Global Ranks</div>
+                <div class="desc">Real-time scoring for competitive play.</div>
+            </div>
+            
+        </div>
+    </section>
+
+    <div class="container scroll-section" data-message="The Communication Hub! Connect with Dinakar across the web." id="section-social">
+        <div class="guide-spot" id="spot-social"></div>
+        <div style="text-align: center; margin: 4rem 0;">
+            <h2 style="font-size: 2.5rem; color: var(--text-black);">Social Signals</h2>
+            <div class="social-grid">
+                
+                <div class="social-bubble linkedin interactable trigger-guide" 
+                     data-message="LinkedIn: The Professional Network. Grants +5 Charisma and Business Opportunities." 
+                     data-link="https://linkedin.com/"> 
+                    <span class="social-icon">in</span>
+                    <span>LinkedIn</span>
+                </div>
+
+                <div class="social-bubble github interactable trigger-guide" 
+                     data-message="GitHub: The Code Repository. Grants +10 Intelligence and Open Source Credibility." 
+                     data-link="https://github.com/"> 
+                    <span class="social-icon">Git</span>
+                    <span>GitHub</span>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://kit.fontawesome.com/14dbca7644.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
-    <script type="text/javascript" src="scripts/link.js"></script>
-    <script type="text/javascript" src="scripts/hovereffects.js"></script>
-</body>
+    <div class="container scroll-section" data-message="The adventure awaits! Send a raven (or email) to start." id="section-contact">
+        <div class="guide-spot" id="spot-contact"></div>
+        <div style="text-align: center; margin-bottom: 4rem;">
+             <h2>Ready to Collaborate?</h2>
+             <p>I'm available for new adventures.</p>
+             <a href="mailto:dinakar_i@yahoo.com" class="btn interactable">Send Message</a>
+        </div>
+    </div>
 
+    <script>
+        // --- 1. GAME STATE ---
+        let gameStarted = false;
+        let flightTimeout;
+        let isInteracting = false; 
+
+        const guideWrapper = document.getElementById('guide-wrapper');
+        const guideText = document.getElementById('guide-text');
+        const bubbleActions = document.getElementById('bubble-actions');
+        const introOverlay = document.getElementById('intro-overlay');
+        const introBtn = document.getElementById('intro-btn');
+
+        // --- 2. MOVEMENT LOGIC ---
+        function moveGuideTo(rect, message, linkUrl = null) {
+            guideWrapper.classList.add('is-flying');
+            
+            // Offset logic
+            guideWrapper.style.left = (rect.left - 40) + 'px'; 
+            guideWrapper.style.top = (rect.top - 80) + 'px';
+
+            guideText.textContent = message;
+            bubbleActions.innerHTML = ''; 
+
+            if (linkUrl && linkUrl !== "") {
+                const linkBtn = document.createElement('a');
+                linkBtn.href = linkUrl;
+                linkBtn.target = "_blank";
+                linkBtn.textContent = "Open Link ↗";
+                linkBtn.className = "bubble-action";
+                bubbleActions.appendChild(linkBtn);
+            }
+
+            clearTimeout(flightTimeout);
+            flightTimeout = setTimeout(() => {
+                guideWrapper.classList.remove('is-flying');
+            }, 1500);
+        }
+
+        // --- 3. CLICK INTERACTIONS (QUESTS & SOCIAL) ---
+        document.querySelectorAll('.trigger-guide').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                e.stopPropagation(); 
+
+                isInteracting = true; 
+
+                const rect = item.getBoundingClientRect();
+                const msg = item.getAttribute('data-message');
+                const link = item.getAttribute('data-link');
+
+                moveGuideTo(rect, msg, link);
+
+                // Release lock after delay
+                setTimeout(() => { isInteracting = false; }, 3000);
+            });
+        });
+
+        // --- 4. START BUTTON ---
+        introBtn.addEventListener('click', () => {
+            gameStarted = true;
+            introOverlay.style.opacity = '0';
+            setTimeout(() => { introOverlay.style.display = 'none'; }, 500);
+            guideWrapper.classList.remove('intro-mode');
+            
+            const spot = document.getElementById('spot-header').getBoundingClientRect();
+            moveGuideTo(spot, "Welcome to the Hive! Dinakar is a Level 2 Full-Stack Worker Bee.");
+        });
+
+        // --- 5. SCROLL OBSERVER ---
+        const observer = new IntersectionObserver((entries) => {
+            if (!gameStarted || isInteracting) return; 
+
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const msg = entry.target.getAttribute('data-message');
+                    const spotEl = entry.target.querySelector('.guide-spot');
+                    
+                    if (msg && spotEl) {
+                        const rect = spotEl.getBoundingClientRect();
+                        moveGuideTo(rect, msg);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.scroll-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- 6. CURSOR LOGIC ---
+        const cursorMain = document.getElementById('cursorMain');
+        const trail1 = document.getElementById('trail1');
+        const trail2 = document.getElementById('trail2');
+
+        document.addEventListener('mousemove', (e) => {
+            cursorMain.style.left = e.clientX + 'px';
+            cursorMain.style.top = e.clientY + 'px';
+            setTimeout(() => { trail1.style.left = e.clientX + 'px'; trail1.style.top = e.clientY + 'px'; }, 50);
+            setTimeout(() => { trail2.style.left = e.clientX + 'px'; trail2.style.top = e.clientY + 'px'; }, 100);
+        });
+        document.querySelectorAll('.interactable').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursorMain.classList.add('cursor-hovered'); });
+            el.addEventListener('mouseleave', () => { cursorMain.classList.remove('cursor-hovered'); });
+        });
+
+    </script>
+
+</body>
 </html>
