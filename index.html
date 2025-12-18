@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dinakar Murugan | Full Stack Developer</title>
+    
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap');
 
@@ -21,14 +24,28 @@
 
         body {
             background-color: var(--bg-color);
+            /* Fallback pattern if lottie loads slow */
             background-image: radial-gradient(var(--accent-blue) 1px, transparent 1px);
             background-size: 20px 20px;
+            
             font-family: 'Quicksand', sans-serif;
             color: var(--text-black);
             margin: 0;
             overflow-x: hidden;
             cursor: none; 
             padding-bottom: 200px;
+        }
+
+        /* --- BACKGROUND LOTTIE STYLES --- */
+        #bg-lottie {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -99; /* Behind everything */
+            opacity: 0.15; /* Subtle visibility */
+            pointer-events: none; /* Let clicks pass through */
         }
 
         h1, h2, h3, .caption, .btn, .tag, .guide-text {
@@ -59,38 +76,27 @@
         /* --- 3. LAYOUT --- */
         .container { max-width: 900px; margin: 0 auto; padding: 2rem; position: relative; }
 
-        /* --- UPDATED HEADER STYLES --- */
         .header { 
             padding: 6rem 0; min-height: 60vh;
             display: flex; flex-direction: column; justify-content: center; position: relative;
         }
         
         .header-content-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem; /* Space between text and character */
+            display: flex; align-items: center; justify-content: center; gap: 2rem; 
         }
 
         .hero-avatar {
-            width: 180px;
-            height: 180px;
-            border: var(--border-thick);
-            border-radius: 50%;
-            background-color: white;
-            box-shadow: 10px 10px 0px var(--text-black);
-            /* Bouncy Animation */
+            width: 180px; height: 180px;
+            border: var(--border-thick); border-radius: 50%;
+            background-color: white; box-shadow: 10px 10px 0px var(--text-black);
             animation: heroBounce 3s ease-in-out infinite;
         }
 
-        .header-text {
-            text-align: left;
-        }
+        .header-text { text-align: left; }
 
         .header h1 {
             font-size: 4rem; color: var(--accent-pink);
-            text-shadow: 4px 4px 0px var(--text-black); margin-bottom: 0.5rem; margin-top: 0;
-            line-height: 1.1;
+            text-shadow: 4px 4px 0px var(--text-black); margin-bottom: 0.5rem; margin-top: 0; line-height: 1.1;
         }
 
         @keyframes heroBounce {
@@ -98,7 +104,6 @@
             50% { transform: translateY(-15px) rotate(3deg); }
         }
 
-        /* Mobile Responsive Header */
         @media (max-width: 768px) {
             .header-content-wrapper { flex-direction: column; text-align: center; }
             .header-text { text-align: center; }
@@ -107,15 +112,17 @@
 
         /* --- 4. SECTIONS --- */
         .card {
-            background: white; border: var(--border-thick); box-shadow: var(--shadow-hard);
+            background: rgba(255, 255, 255, 0.95); /* Slightly transparent */
+            border: var(--border-thick); box-shadow: var(--shadow-hard);
             border-radius: 20px; padding: 2rem; margin-bottom: 3rem; position: relative; z-index: 1; 
         }
         .about-section { background-color: var(--accent-yellow); border-radius: 25px 50px 25px 50px; }
         .skill-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        
         .tag {
             background: white; border: 2px solid var(--text-black);
-            padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;
-            box-shadow: 2px 2px 0px var(--text-black);
+            padding: 5px 15px; border-radius: 20px; font-size: 0.85rem;
+            box-shadow: 2px 2px 0px var(--text-black); font-weight: bold;
         }
 
         /* --- 5. QUEST BOARD --- */
@@ -148,7 +155,6 @@
             text-decoration: none; color: var(--text-black); display: block;
             box-shadow: 5px 5px 5px rgba(0,0,0,0.2); border-bottom-right-radius: 60px 10px; 
         }
-        /* Sticky note colors */
         .photo-card:nth-child(1) { background-color: #ffccbc; }
         .photo-card:nth-child(2) { background-color: #fff9c4; }
         .photo-card:nth-child(3) { background-color: #b2dfdb; }
@@ -174,16 +180,11 @@
             display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem;
         }
         .social-bubble {
-            width: 140px; height: 140px;
-            border-radius: 50%;
-            border: var(--border-thick);
+            width: 140px; height: 140px; border-radius: 50%; border: var(--border-thick);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            font-family: 'Fredoka One'; font-size: 1.2rem;
-            text-decoration: none; color: black;
-            box-shadow: 8px 8px 0px rgba(0,0,0,1);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: white;
-            cursor: pointer;
+            font-family: 'Fredoka One'; font-size: 1.2rem; text-decoration: none; color: black;
+            box-shadow: 8px 8px 0px rgba(0,0,0,1); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white; cursor: pointer;
         }
         .social-bubble:hover { transform: scale(1.15) rotate(5deg); box-shadow: 12px 12px 0px rgba(0,0,0,1); }
         .social-bubble.linkedin { background: #0077b5; color: white; }
@@ -232,7 +233,7 @@
             padding: 10px; border-radius: 15px; width: 220px;
             box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
             font-size: 0.85rem; opacity: 0; transition: opacity 0.5s;
-            pointer-events: auto; /* Enable clicking buttons inside bubble */
+            pointer-events: auto; 
         }
         .speech-bubble.visible { opacity: 1; }
         .guide-name { color: var(--accent-pink); font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 2px;}
@@ -273,6 +274,13 @@
     </style>
 </head>
 <body>
+
+    <dotlottie-wc
+        src="https://lottie.host/fd5d46c4-c869-4b4d-abc9-232437db5ced/NQPM1s6mkT.lottie"
+        autoplay
+        loop
+        id="bg-lottie"
+    ></dotlottie-wc>
 
     <div class="cursor-trail" id="trail1"></div>
     <div class="cursor-trail" id="trail2"></div>
@@ -391,7 +399,7 @@
     <div class="container scroll-section" data-message="The Communication Hub! Connect with Dinakar across the web." id="section-social">
         <div class="guide-spot" id="spot-social"></div>
         <div style="text-align: center; margin: 4rem 0;">
-            <h2 style="font-size: 2.5rem; color: var(--text-black);">Social Signals</h2>
+            <h2 style="font-size: 2.5rem; color: var(--text-black); background: rgba(255,255,255,0.7); display:inline-block; padding: 0.5rem 1rem; border-radius:15px;">Social Signals</h2>
             <div class="social-grid">
                 
                 <div class="social-bubble linkedin interactable trigger-guide" 
@@ -415,8 +423,9 @@
     <div class="container scroll-section" data-message="The adventure awaits! Send a raven (or email) to start." id="section-contact">
         <div class="guide-spot" id="spot-contact"></div>
         <div style="text-align: center; margin-bottom: 4rem;">
-             <h2>Ready to Collaborate?</h2>
-             <p>I'm available for new adventures.</p>
+             <h2 style="background: rgba(255,255,255,0.7); display:inline-block; padding: 0.5rem 1rem; border-radius:15px;">Ready to Collaborate?</h2>
+             <p style="background: rgba(255,255,255,0.7); display:inline-block; padding: 0.5rem 1rem; border-radius:15px; font-weight:bold;">I'm available for new adventures.</p>
+             <br>
              <a href="mailto:dinakar_i@yahoo.com" class="btn interactable">Send Message</a>
         </div>
     </div>
