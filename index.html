@@ -55,24 +55,36 @@
             text-transform: uppercase;
         }
 
-        /* --- 2. CURSOR ANIMATION --- */
+        /* --- 2. CURSOR ANIMATION (FIXED) --- */
         .cursor-main {
             width: 30px; height: 30px; background-color: var(--accent-pink);
             border: 3px solid var(--text-black); border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s;
+            transform: translate(-50%, -50%); 
+            /* Quick transition for the main cursor to prevent jumpiness */
+            transition: width 0.2s, height 0.2s, transform 0.05s;
         }
+        
         .cursor-trail {
             width: 15px; height: 15px; background-color: var(--accent-yellow);
             border: 2px solid var(--text-black); border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 9998;
-            transition: left 0.1s linear, top 0.1s linear; transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            /* CSS handles the delay smoothly using ease-out */
+            transition: left 0.15s ease-out, top 0.15s ease-out; 
         }
+
+        /* The second dot moves slower to create the trail effect */
+        #trail2 {
+            transition-duration: 0.25s;
+        }
+
         .cursor-hovered {
             width: 50px; height: 50px; background: transparent;
             border: 4px dashed var(--accent-blue); animation: spin 4s linear infinite;
         }
         @keyframes spin { 100% { transform:translate(-50%, -50%) rotate(360deg); } }
+
 
         /* --- 3. LAYOUT --- */
         .container { max-width: 900px; margin: 0 auto; padding: 2rem; position: relative; }
@@ -273,8 +285,7 @@
         .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--text-black); }
 
     </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HJDXPXH81X"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJDXPXH81X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -529,17 +540,27 @@
             observer.observe(section);
         });
 
-        // --- 6. CURSOR LOGIC ---
+        // --- 6. CURSOR LOGIC (FIXED) ---
         const cursorMain = document.getElementById('cursorMain');
         const trail1 = document.getElementById('trail1');
         const trail2 = document.getElementById('trail2');
 
         document.addEventListener('mousemove', (e) => {
-            cursorMain.style.left = e.clientX + 'px';
-            cursorMain.style.top = e.clientY + 'px';
-            setTimeout(() => { trail1.style.left = e.clientX + 'px'; trail1.style.top = e.clientY + 'px'; }, 50);
-            setTimeout(() => { trail2.style.left = e.clientX + 'px'; trail2.style.top = e.clientY + 'px'; }, 100);
+            const x = e.clientX + 'px';
+            const y = e.clientY + 'px';
+
+            // Update all positions immediately
+            // The CSS transition delays handle the smoothing visual effect
+            cursorMain.style.left = x;
+            cursorMain.style.top = y;
+            
+            trail1.style.left = x;
+            trail1.style.top = y;
+            
+            trail2.style.left = x;
+            trail2.style.top = y;
         });
+
         document.querySelectorAll('.interactable').forEach(el => {
             el.addEventListener('mouseenter', () => { cursorMain.classList.add('cursor-hovered'); });
             el.addEventListener('mouseleave', () => { cursorMain.classList.remove('cursor-hovered'); });
